@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コーヒー濃さ選択</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .strength-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4e3c3c 0%, #6d4c41 100%);
+        }
+        .strength-title {
+            font-size: 1.5rem;
+            color: #ffe082;
+            margin-bottom: 32px;
+            text-shadow: 1px 2px 0 #a1887f, 0 0 8px #fff3e0;
+        }
+        .strength-buttons {
+            display: flex;
+            gap: 32px;
+        }
+        .strength-btn {
+            background: #fff8e1;
+            border: 2px solid #ffe082;
+            border-radius: 18px;
+            color: #6d4c41;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 24px 36px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            cursor: pointer;
+            transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+        }
+        .strength-btn:hover {
+            background: #ffe082;
+            color: #6d4c41;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(255,193,7,0.18);
+        }
+        .back-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #fff8e1;
+            border: 2px solid #ffe082;
+            border-radius: 12px;
+            color: #6d4c41;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 12px 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+        }
+        .back-btn:hover {
+            background: #ffe082;
+            color: #6d4c41;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(255,193,7,0.18);
+        }
+    </style>
+</head>
+<body>
+    <button class="back-btn" onclick="history.back()">前に戻る<br><span class="en">Go Back</span></button>
+    <div class="strength-container">
+        <div class="strength-title">コーヒーの濃さを選んでください<br><span class="en">Please select coffee strength</span></div>
+        <div class="strength-buttons">
+            <button class="strength-btn" id="strong-btn">濃いめ<br><span class="en">STRONG</span></button>
+            <button class="strength-btn" id="normal-btn">普通<br><span class="en">REGULAR</span></button>
+            <button class="strength-btn" id="light-btn">薄め<br><span class="en">LIGHT</span></button>
+        </div>
+    </div>
+    <script>
+        // どのボタンを押してもbrewing.htmlへ遷移
+        document.getElementById('strong-btn').onclick = function() { location.href = 'brewing.html'; };
+        document.getElementById('normal-btn').onclick = function() { location.href = 'brewing.html'; };
+        document.getElementById('light-btn').onclick = function() { location.href = 'brewing.html'; };
+    </script>
+</body>
+</html>

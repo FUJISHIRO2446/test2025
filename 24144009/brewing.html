@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽出中</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .brewing-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4e3c3c 0%, #6d4c41 100%);
+        }
+        .brewing-message {
+            font-size: 2rem;
+            color: #ffe082;
+            margin-bottom: 32px;
+            text-shadow: 1px 2px 0 #a1887f, 0 0 8px #fff3e0;
+        }
+        .timer-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cup-anim {
+            margin-top: 16px;
+            animation: steam 1.5s infinite alternate;
+        }
+        @keyframes steam {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-12px); opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <div class="brewing-container">
+        <div class="brewing-message">
+            コーヒーを抽出しています<br>
+            <span class="en">Brewing your coffee...</span>
+        </div>
+        <div class="timer-area">
+            <svg class="timer-clock" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="36" stroke="#ffe082" stroke-width="6" fill="#fff8e1"/>
+                <circle cx="40" cy="40" r="30" stroke="#ffe082" stroke-width="2" fill="none"/>
+                <circle cx="40" cy="40" r="28" stroke="#ffe082" stroke-width="1" fill="none"/>
+                <g id="clock-hands">
+                    <line id="clock-minute" x1="40" y1="40" x2="40" y2="18" stroke="#6d4c41" stroke-width="4" stroke-linecap="round"/>
+                    <line id="clock-second" x1="40" y1="40" x2="40" y2="12" stroke="#ff8a80" stroke-width="2" stroke-linecap="round"/>
+                </g>
+                <circle cx="40" cy="40" r="4" fill="#ffe082" stroke="#6d4c41" stroke-width="2"/>
+            </svg>
+            <div class="timer-count" id="timer-count" style="margin-top:12px;font-size:1.5rem;color:#ffe082;text-shadow:1px 2px 0 #a1887f,0 0 8px #fff3e0;">10</div>
+        </div>
+        <svg class="cup-anim" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- コーヒーカップ本体 -->
+            <ellipse cx="40" cy="60" rx="22" ry="8" fill="#bdbdbd"/>
+            <rect x="18" y="28" width="44" height="32" rx="14" fill="#fff" stroke="#bdbdbd" stroke-width="2"/>
+            <ellipse cx="40" cy="28" rx="22" ry="8" fill="#fff" stroke="#bdbdbd" stroke-width="2"/>
+            <!-- コーヒー液面 -->
+            <ellipse cx="40" cy="32" rx="18" ry="6" fill="#6d4c41"/>
+            <!-- 取っ手 -->
+            <path d="M62 40c10 0 10 18 0 18" stroke="#bdbdbd" stroke-width="3" fill="none"/>
+            <!-- スチーム（湯気） -->
+            <path d="M32 18c0-6 16-6 16 0" stroke="#ffe082" stroke-width="2" fill="none"/>
+            <path d="M40 14c0-4 8-4 8 0" stroke="#ffe082" stroke-width="2" fill="none"/>
+        </svg>
+    </div>
+    <script>
+        // タイマーと時計の針のアニメーション
+        let seconds = 10;
+        const timerCount = document.getElementById('timer-count');
+        const clockMinute = document.getElementById('clock-minute');
+        const clockSecond = document.getElementById('clock-second');
+        function updateClock(sec) {
+            // 秒針は1周60秒→10秒で60度ずつ進む
+            const secondAngle = (360 / 10) * (10 - sec);
+            // 分針は1周10秒で1/6周(60度)進む
+            const minuteAngle = (60 / 10) * (10 - sec);
+            clockSecond.setAttribute('transform', `rotate(${secondAngle} 40 40)`);
+            clockMinute.setAttribute('transform', `rotate(${minuteAngle} 40 40)`);
+        }
+        updateClock(seconds);
+        const timer = setInterval(() => {
+            seconds--;
+            if (timerCount) timerCount.textContent = seconds;
+            updateClock(seconds);
+            if (seconds <= 0) clearInterval(timer);
+        }, 1000);
+
+        setTimeout(function() {
+            window.location.href = 'done.html';
+        }, 10000);
+    </script>
+</body>
+</html>

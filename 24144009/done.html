@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コーヒー完成</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .done-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4e3c3c 0%, #6d4c41 100%);
+        }
+        .done-message {
+            font-size: 2rem;
+            color: #ffe082;
+            margin-bottom: 32px;
+            text-shadow: 1px 2px 0 #a1887f, 0 0 8px #fff3e0;
+        }
+        .cup-anim {
+            margin-top: 16px;
+        }
+        .back-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 8px 16px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #6d4c41;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .back-btn:hover {
+            background-color: #5d3b36;
+        }
+        .en {
+            font-size: 0.8rem;
+            color: #ffe082;
+        }
+    </style>
+</head>
+<body>
+    <button class="back-btn" onclick="location.href='index.html'">TOPに戻る<br><span class="en">Return to TOP</span></button>
+    <div class="done-container">
+        <div class="done-message">
+            コーヒーが出来上がりました<br>
+            <span class="en">Your coffee is ready!</span>
+        </div>
+        <svg class="cup-anim" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- コーヒーカップ本体 -->
+            <ellipse cx="40" cy="60" rx="22" ry="8" fill="#bdbdbd"/>
+            <rect x="18" y="28" width="44" height="32" rx="14" fill="#fff" stroke="#bdbdbd" stroke-width="2"/>
+            <ellipse cx="40" cy="28" rx="22" ry="8" fill="#fff" stroke="#bdbdbd" stroke-width="2"/>
+            <!-- コーヒー液面 -->
+            <ellipse cx="40" cy="32" rx="18" ry="6" fill="#6d4c41"/>
+            <!-- 取っ手 -->
+            <path d="M62 40c10 0 10 18 0 18" stroke="#bdbdbd" stroke-width="3" fill="none"/>
+        </svg>
+    </div>
+    <script>
+        setTimeout(function() {
+            window.location.href = 'index.html';
+        }, 10000);
+    </script>
+</body>
+</html>
